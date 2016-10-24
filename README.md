@@ -4,7 +4,7 @@ A polymer built element that represents license plate templates for **Germany** 
 The chosen layout shows two dashes in between the digits for Netherlands and no-dashes for the German representation.
 The width can be freely adjustable and the correct height is automatically calculated.
 
-**Demo** :
+**Demo** : [https://bbx-kitchen.github.io/bbx-license-plate](https://bbx-kitchen.github.io/bbx-license-plate/components/bbx-license-plate/demo/)
 
 ## How to install
 
