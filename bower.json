@@ -4,7 +4,7 @@
   "authors": [
     "Basis Europe",
     "Edit Kapcar <edit.kapcari@gmail.com>",
-    "Hyyan Abo Fakher <hyyanaf@gmail.com>",
+    "Hyyan Abo Fakher <hyyanaf@gmail.com>"
   ],
   "description": "A polymer built element that represents license plate templates for Germany and Netherlands.The chosen layout shows two dashes in between the digits for Netherlands and no-dashes for the German representation.The width can be freely adjustable and the correct height is automatically calculated",
   "keywords": [
@@ -13,7 +13,7 @@
     "BBx-Kitchen",
     "Basis Europe",
     "polymer",
-    "licenses germany"
+    "licenses germany",
     "licenses Netherlands"
   ],
   "main": [
