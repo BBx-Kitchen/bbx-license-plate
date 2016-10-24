@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+This file is part of the BBx-Kitchen/bbx-license-plate
+(c) Basis Europe <eu@basis.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+-->
+
+<html>
+<head>
+  <title>BBX License Plate</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+  <link rel="import" href="../bbx-license-plate.html">
+
+  <style is="custom-style" include="demo-pages-shared-styles">
+  .vertical-section-container{
+    width: 650px;
+    margin: 0 auto;
+  }
+ </style>
+</head>
+<body>
+  <div class="vertical-section-container">
+    <h1>BBX License Plate</h1>
+    <demo-snippet>
+      <template>
+        <bbx-license-plate plate-number="64-GS-HR"></bbx-license-plate>
+        <bbx-license-plate plate-number="HH KL 775"></bbx-license-plate>
+        <bbx-license-plate plate-number="64-GS-HR" plate-width="400px"></bbx-license-plate>
+        <bbx-license-plate plate-number="HH KL 775" plate-width="600px"></bbx-license-plate>
+      </template>
+    </demo-snippet>
+  </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!--
+This file is part of the BBx-Kitchen/bbx-license-plate
+(c) Basis Europe <eu@basis.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+
+## BBX License Plate
+
+A polymer built element that represents license plate templates for **Germany** and **Netherlands**.
+The chosen layout shows two dashes in between the digits for Netherlands and no-dashes for the German representation.
+The width can be freely adjustable and the correct height is automatically calculated.
+
+## Example
+
+```html
+
+<bbx-license-plate plate-Number="HH KL 775">
+</bbx-license-plate>
+
+<bbx-license-plate plate-Number="64-GS-HR" plate-width="400px">
+</bbx-license-plate>
+
+```
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="bbx-license-plate">
+  <template>
+    <style>
+      @font-face {
+      	font-family: 'Conv_GL-Nummernschild-Eng';
+      	src: url('fonts/GL-Nummernschild-Eng.eot');
+      	src: local('☺'), url('fonts/GL/GL-Nummernschild-Eng.woff') format('woff'),
+                         url('fonts/GL/GL-Nummernschild-Eng.ttf') format('truetype'),
+                         url('fonts/GL/GL-Nummernschild-Eng.svg') format('svg');
+      	font-weight: normal;
+      	font-style: normal;
+      }
+      @font-face {
+      	font-family: 'Conv_Kenteken';
+      	src: url('fonts/Kenteken.eot');
+      	src: local('☺'), url('fonts/kenteken/Kenteken.woff') format('woff'),
+                         url('fonts/kenteken/Kenteken.ttf') format('truetype'),
+                         url('fonts/kenteken/Kenteken.svg') format('svg');
+      	font-weight: normal;
+      	font-style: normal;
+      }
+      :host {
+        @apply(--bbx-license-plate-style);
+        margin: 0 2px;
+        --plate-width: 200px;
+      }
+      .plate {
+        display: flex;
+        position: relative;
+        background-color: white;
+        box-shadow: 0 0 0 calc(var(--plate-width) * 0.01) white;
+        width: var(--plate-width);
+        text-align: center;
+        text-transform: uppercase;
+        font-family: Roboto, Sans-Serif;
+        font-weight: 500;
+        border: black solid calc(var(--plate-width) * 0.01);
+        border-radius: calc(var(--plate-width) * 0.02);
+        overflow:hidden;
+      }
+      .plate > .country {
+        position: relative;
+        flex: 10%;
+        background-color: #003399;
+        bottom:0;
+        top:0;
+      }
+      .plate > .country > .letter {
+        position: absolute;
+        width: 100%;
+        bottom: 3%;
+        color: white;
+      }
+      .plate > .country > .letter.NL {
+        font-size: calc(var(--plate-width)/(390/110) * 0.25);
+      }
+      .plate > .country > .letter.D {
+        font-size: calc(var(--plate-width)/(350/110) * 0.25);
+      }
+      .plate > .country > .european_logo {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        top: 2%;
+      }
+      .plate > .country > .european_logo > img {
+        width: 70%;
+        /*FIX for small license plates*/
+        position: absolute;
+        top: 2px;
+        left: 15%;
+      }
+      .plate > .number {
+        flex: 85%;
+        line-height: calc(var(--plate-width) / (520 / 110));
+      }
+      .plate > .number.NL {
+        font-family:'Conv_Kenteken',Sans-Serif !important;
+        background-color: #FFCB03;
+        box-shadow: 0 0 0 calc(var(--plate-width) * 0.01) #FFCB03;
+        font-size: calc(var(--plate-width)/(440/110) * 0.6);
+      }
+      .plate > .number.D {
+        font-family:'Conv_GL-Nummernschild-Eng',Sans-Serif !important;
+        background-color: white;
+        box-shadow: 0 0 0 calc(var(--plate-width) * 0.01) white;
+        font-size: calc(var(--plate-width)/(250/110) * 0.6);
+      }
+      .letter::after {
+        content: "";
+      }
+      .NL .letter::after {
+        content:"NL";
+      }
+      .D .letter::after {
+        content:"D";
+      }
+    </style>
+    <div class$="plate {{_countryCompare(0, plateNumber, 'D')}} {{_countryCompare(2, plateNumber, 'NL')}}">
+      <div class="country">
+        <div class="european_logo"><img src="image/eu_stars.svg"/></div>
+        <div class$="letter {{_countryCompare(0, plateNumber, 'D')}} {{_countryCompare(2, plateNumber, 'NL')}}"></div>
+      </div>
+      <div class$="number {{_countryCompare(0, plateNumber, 'D')}} {{_countryCompare(2, plateNumber, 'NL')}}">{{plateNumber}}</div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'bbx-license-plate',
+      properties: {
+
+        /**
+         * Plate Number
+         *
+         * @type {String}
+         */
+        plateNumber: {
+          type: String,
+          value: "",
+          observer: "_plateNumberChanged"
+        },
+
+        /**
+         * Plate Width
+         *
+         * @type {String}
+         */
+        plateWidth: {
+          type: String,
+          value: "200px",
+          observer: "_plateWidthChanged"
+        }
+      },
+
+      /**
+      * Check the occurrences of a specific character in the input license plate string
+      */
+      _countryCompare: function (pos, plateNumber, className){
+        var dashArray = plateNumber.match(/-/g);
+        var freq = dashArray? dashArray.length : 0;
+        if (pos === freq) return className;
+        return "";
+      },
+
+      _plateNumberChanged: function(newValue,oldValue) {
+        if (newValue) var dashArray = newValue.match(/-/g);
+        this.hidden = dashArray != null && (dashArray.length != 0 && dashArray.length !=2);
+      },
+
+      _plateWidthChanged: function(newValue, oldValue) {
+        this.customStyle['--plate-width'] = newValue;
+        this.updateStyles();
+      }
+
+    });
+  </script>
+</dom-module>

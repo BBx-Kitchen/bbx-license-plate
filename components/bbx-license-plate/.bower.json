@@ -1,0 +1,56 @@
+{
+  "name": "bbx-license-plate",
+  "authors": [
+    "Basis Europe",
+    "Edit Kapcar <edit.kapcari@gmail.com>",
+    "Hyyan Abo Fakher <hyyanaf@gmail.com>"
+  ],
+  "description": "A polymer built element that represents license plate templates for Germany and Netherlands.The chosen layout shows two dashes in between the digits for Netherlands and no-dashes for the German representation.The width can be freely adjustable and the correct height is automatically calculated",
+  "keywords": [
+    "polymer",
+    "web-components",
+    "BBx-Kitchen",
+    "Basis Europe",
+    "polymer",
+    "licenses germany",
+    "licenses Netherlands"
+  ],
+  "main": [
+    "bbx-license-plate.html",
+    "images/eu_stars.svg",
+    "fonts/GL/GL-Nummernschild-Eng.eot",
+    "fonts/GL/GL-Nummernschild-Eng.otf",
+    "fonts/GL/GL-Nummernschild-Eng.svg",
+    "fonts/GL/GL-Nummernschild-Eng.ttf",
+    "fonts/GL/GL-Nummernschild-Eng.woff",
+    "fonts/Kenteken/Kenteken.eot",
+    "fonts/Kenteken/Kenteken.otf",
+    "fonts/Kenteken/Kenteken.svg",
+    "fonts/Kenteken/Kenteken.ttf",
+    "fonts/Kenteken/Kenteken.woff"
+  ],
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/BBx-Kitchen/bbx-license-plate",
+  "_release": "731324cb6e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "731324cb6efa3fcae506c627c2c48de0dbcfcc20"
+  },
+  "_source": "git://github.com/BBx-Kitchen/bbx-license-plate.git",
+  "_target": "master",
+  "_originalSource": "BBx-Kitchen/bbx-license-plate",
+  "_direct": true
+}
