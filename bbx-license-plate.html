@@ -55,14 +55,14 @@ The width can be freely adjustable and the correct height is automatically calcu
       }
       :host {
         @apply(--bbx-license-plate-style);
-        margin: 0 2px;
+        /* margin: 0 2px; */
         --plate-width: 200px;
       }
       .plate {
         display: flex;
         position: relative;
-        background-color: white;
-        box-shadow: 0 0 0 calc(var(--plate-width) * 0.01) white;
+        background-color: transparent;
+        /* box-shadow: 0 0 0 calc(var(--plate-width) * 0.01) white; */
         width: var(--plate-width);
         text-align: center;
         text-transform: uppercase;
