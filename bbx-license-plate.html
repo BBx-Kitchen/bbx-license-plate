@@ -36,28 +36,31 @@ The width can be freely adjustable and the correct height is automatically calcu
   <template>
     <style>
       @font-face {
-      	font-family: 'Conv_GL-Nummernschild-Eng';
-      	src: url('fonts/GL-Nummernschild-Eng.eot');
-      	src: local('☺'), url('/fonts/GL/GL-Nummernschild-Eng.woff') format('woff'),
-                         url('/fonts/GL/GL-Nummernschild-Eng.ttf') format('truetype'),
-                         url('/fonts/GL/GL-Nummernschild-Eng.svg') format('svg');
-      	font-weight: normal;
-      	font-style: normal;
+        font-family: 'Conv_GL-Nummernschild-Eng';
+        src: url('fonts/GL-Nummernschild-Eng.eot');
+        src: local('☺'), url('/fonts/GL/GL-Nummernschild-Eng.woff') format('woff'),
+        url('/fonts/GL/GL-Nummernschild-Eng.ttf') format('truetype'),
+        url('/fonts/GL/GL-Nummernschild-Eng.svg') format('svg');
+        font-weight: normal;
+        font-style: normal;
       }
+
       @font-face {
-      	font-family: 'Conv_Kenteken';
-      	src: url('fonts/Kenteken.eot');
-      	src: local('☺'), url('/fonts/Kenteken/Kenteken.woff') format('woff'),
-                         url('/fonts/Kenteken/Kenteken.ttf') format('truetype'),
-                         url('/fonts/Kenteken/Kenteken.svg') format('svg');
-      	font-weight: normal;
-      	font-style: normal;
+        font-family: 'Conv_Kenteken';
+        src: url('fonts/Kenteken.eot');
+        src: local('☺'), url('/fonts/Kenteken/Kenteken.woff') format('woff'),
+        url('/fonts/Kenteken/Kenteken.ttf') format('truetype'),
+        url('/fonts/Kenteken/Kenteken.svg') format('svg');
+        font-weight: normal;
+        font-style: normal;
       }
+
       :host {
         @apply(--bbx-license-plate-style);
         /* margin: 0 2px; */
         --plate-width: 200px;
       }
+
       .plate {
         display: flex;
         position: relative;
@@ -70,73 +73,87 @@ The width can be freely adjustable and the correct height is automatically calcu
         font-weight: 500;
         border: black solid calc(var(--plate-width) * 0.01);
         border-radius: calc(var(--plate-width) * 0.02);
-        overflow:hidden;
-        color: var(--plate-color,black);
+        overflow: hidden;
+        color: var(--plate-color, black);
       }
-      .plate > .country {
+
+      .plate>.country {
         position: relative;
         flex: 10%;
         background-color: #003399;
-        bottom:0;
-        top:0;
+        bottom: 0;
+        top: 0;
       }
-      .plate > .country > .letter {
+
+      .plate>.country>.letter {
         position: absolute;
         width: 100%;
         bottom: 3%;
         color: white;
       }
-      .plate > .country > .letter.NL {
+
+      .plate>.country>.letter.NL {
         font-size: calc(var(--plate-width)/(390/110) * 0.25);
       }
-      .plate > .country > .letter.D {
+
+      .plate>.country>.letter.D {
         font-size: calc(var(--plate-width)/(350/110) * 0.25);
       }
-      .plate > .country > .european_logo {
+
+      .plate>.country>.european_logo {
         position: absolute;
         text-align: center;
         width: 100%;
         top: 2%;
       }
-      .plate > .country > .european_logo > img {
+
+      .plate>.country>.european_logo>img {
         width: 70%;
         /*FIX for small license plates*/
         position: absolute;
         top: 2px;
         left: 15%;
       }
-      .plate > .number {
+
+      .plate>.number {
         flex: 85%;
         line-height: calc(var(--plate-width) / (520 / 110));
       }
-      .plate > .number.NL {
-        font-family:'Conv_Kenteken',Sans-Serif !important;
+
+      .plate>.number.NL {
+        font-family: 'Conv_Kenteken', Sans-Serif !important;
         background-color: #FFCB03;
         box-shadow: 0 0 0 calc(var(--plate-width) * 0.01) #FFCB03;
         font-size: calc(var(--plate-width)/(440/110) * 0.6);
       }
-      .plate > .number.D {
-        font-family:'Conv_GL-Nummernschild-Eng',Sans-Serif !important;
+
+      .plate>.number.D {
+        font-family: 'Conv_GL-Nummernschild-Eng', Sans-Serif !important;
         background-color: white;
         box-shadow: 0 0 0 calc(var(--plate-width) * 0.01) white;
         font-size: calc(var(--plate-width)/(250/110) * 0.6);
       }
+
       .letter::after {
         content: "";
       }
+
       .NL .letter::after {
-        content:"NL";
+        content: "NL";
       }
+
       .D .letter::after {
-        content:"D";
+        content: "D";
       }
     </style>
-    <div class$="plate {{_countryCompare(0, plateNumber, 'D')}} {{_countryCompare(2, plateNumber, 'NL')}}">
+    <div class$="plate {{_plateCountry}}">
       <div class="country">
-        <div class="european_logo"><img src="[[rootPath]]images/eu_stars.svg"/></div>
-        <div class$="letter {{_countryCompare(0, plateNumber, 'D')}} {{_countryCompare(2, plateNumber, 'NL')}}"></div>
+        <div class="european_logo">
+          <img src="[[rootPath]]images/eu_stars.svg" />
+        </div>
+        <div class$="letter {{_plateCountry}}"></div>
       </div>
-      <div class$="number {{_countryCompare(0, plateNumber, 'D')}} {{_countryCompare(2, plateNumber, 'NL')}}">{{plateNumber}}</div>
+      <div class$="number {{_plateCountry}}">{{plateNumber}}</div>
     </div>
   </template>
   <script>
@@ -151,8 +168,7 @@ The width can be freely adjustable and the correct height is automatically calcu
          */
         plateNumber: {
           type: String,
-          value: "",
-          observer: "_plateNumberChanged"
+          value: ""
         },
 
         /**
@@ -164,25 +180,22 @@ The width can be freely adjustable and the correct height is automatically calcu
           type: String,
           value: "200px",
           observer: "_plateWidthChanged"
+        },
+
+        _plateCountry: {
+          type: String,
+          computed: '_computePlateCountry(plateNumber)'
         }
       },
 
-      /**
-      * Check the occurrences of a specific character in the input license plate string
-      */
-      _countryCompare: function (pos, plateNumber, className){
+      _computePlateCountry: function (plateNumber) {
         var dashArray = plateNumber.match(/-/g);
-        var freq = dashArray? dashArray.length : 0;
-        if (pos === freq) return className;
-        return "";
+        console.log(plateNumber, dashArray ? dashArray.length : 0)
+        if (dashArray && dashArray.length > 1) return 'NL'
+        else return 'D';
       },
 
-      _plateNumberChanged: function(newValue,oldValue) {
-        if (newValue) var dashArray = newValue.match(/-/g);
-        this.hidden = dashArray != null && (dashArray.length != 0 && dashArray.length !=2);
-      },
-
-      _plateWidthChanged: function(newValue, oldValue) {
+      _plateWidthChanged: function (newValue, oldValue) {
         this.customStyle['--plate-width'] = newValue;
         this.updateStyles();
       }
