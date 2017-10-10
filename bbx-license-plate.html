@@ -191,7 +191,6 @@ The width can be freely adjustable and the correct height is automatically calcu
 
       _computePlateCountry: function (plateNumber) {
         var dashArray = plateNumber.match(/-/g);
-        console.log(plateNumber, dashArray ? dashArray.length : 0)
         if (dashArray && dashArray.length > 1) return 'NL'
         else return 'D';
       },
