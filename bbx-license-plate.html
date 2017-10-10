@@ -104,14 +104,15 @@ The width can be freely adjustable and the correct height is automatically calcu
         position: absolute;
         text-align: center;
         width: 100%;
-        top: 2%;
+        /* top: 2%; */
+        top: 30%;
       }
 
       .plate>.country>.european_logo>img {
         width: 70%;
         /*FIX for small license plates*/
         position: absolute;
-        top: 2px;
+        /* top: 2px; */
         left: 15%;
       }
 
@@ -151,7 +152,7 @@ The width can be freely adjustable and the correct height is automatically calcu
         <div class="european_logo">
           <img src="https://cdn.jsdelivr.net/gh/BBx-Kitchen/bbx-license-plate@v1.1.0/images/eu_stars.svg" />
         </div>
-        <div class$="letter {{_plateCountry}}"></div>
+        <!-- <div class$="letter {{_plateCountry}}"></div> -->
       </div>
       <div class$="number {{_plateCountry}}">{{plateNumber}}</div>
     </div>
